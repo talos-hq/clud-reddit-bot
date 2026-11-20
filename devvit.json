@@ -1,0 +1,47 @@
+{
+  "$schema": "https://developers.reddit.com/schema/config-file.v1.json",
+  "name": "clud-bot",
+  "permissions": {
+    "redis": true,
+    "reddit": true
+  },
+  "server": {
+    "externalEndpoints": {
+      "ingest": {
+        "endpoint": "/external/ingest",
+        "scopes": ["install", "global"]
+      }
+    }
+  },
+  "menu": {
+    "items": [
+      {
+        "label": "Post clud run",
+        "description": "Publish a clud run summary to this subreddit.",
+        "location": "subreddit",
+        "forUserType": "moderator",
+        "endpoint": "/internal/on/menu/post-clud-run"
+      },
+      {
+        "label": "Show clud webhook",
+        "description": "Show the URL that clud runs POST their summaries to.",
+        "location": "subreddit",
+        "forUserType": "moderator",
+        "endpoint": "/internal/on/menu/webhook"
+      }
+    ]
+  },
+  "forms": {
+    "cludRun": "/internal/on/form/clud-run",
+    "webhook": "/internal/on/form/webhook"
+  },
+  "triggers": {
+    "onAppInstall": "/internal/on/app/install"
+  },
+  "scripts": {
+    "dev": "npm run watch"
+  },
+  "dev": {
+    "subreddit": "clud_bot_dev"
+  }
+}
