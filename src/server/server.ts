@@ -26,8 +26,8 @@ const WELCOME_TEXT = [
   'autonomous coding runs to Claude Code and Codex.',
   '',
   'Moderators can publish a run summary with **Post clud run** in the',
-  'subreddit menu. Automated runners POST to the webhook shown by',
-  '**Show clud webhook**.',
+  'subreddit menu. Automated ingest over a webhook is pending Reddit',
+  'approval; until then posts go up through that menu.',
 ].join('\n')
 
 export async function onReq(
@@ -155,7 +155,10 @@ async function routeMenuWebhook(): Promise<UiResponse> {
     webhook = root.endsWith('/') ? `${root}ingest` : `${root}/ingest`
   } catch (err) {
     const msg = err instanceof Error ? err.message : `${err}`
-    return {showToast: {text: `No webhook yet: ${msg}`, appearance: 'neutral'}}
+    const text = /PERMISSION_DENIED|not enabled/i.test(msg)
+      ? 'Inbound webhook is pending Reddit approval; use "Post clud run" for now.'
+      : `No webhook yet: ${msg}`
+    return {showToast: {text, appearance: 'neutral'}}
   }
 
   return {
