@@ -111,7 +111,10 @@ test('form submit creates a text post', async () => {
   })
   assert.equal(rsp.status, 200)
   const ui = (await rsp.json()) as UiResponse
-  assert.equal(ui.navigateTo, '/r/clud/comments/abc123/run/')
+  assert.equal(
+    ui.navigateTo,
+    'https://www.reddit.com/r/clud/comments/abc123/run/',
+  )
   assert.deepEqual(submitted, [
     {title: 'Fixed the flaky CI', text: 'clud ran 3 agents.', url: undefined},
   ])

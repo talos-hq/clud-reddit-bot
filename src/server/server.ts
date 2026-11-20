@@ -209,8 +209,15 @@ async function routeFormCludRun(reqMsg: IncomingMessage): Promise<UiResponse> {
       text: `Posted to r/${context.subredditName}.`,
       appearance: 'success',
     },
-    navigateTo: post.permalink,
+    navigateTo: absolutePermalink(post.permalink),
   }
+}
+
+/** `ui.navigateTo` throws on a relative path; Devvit needs an absolute URL. */
+function absolutePermalink(permalink: string): string {
+  return /^https?:\/\//.test(permalink)
+    ? permalink
+    : `https://www.reddit.com${permalink}`
 }
 
 async function routeExternalIngest(
