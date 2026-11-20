@@ -3,7 +3,10 @@
 Devvit app that publishes **clud** agent-run summaries to
 [r/clud](https://www.reddit.com/r/clud) as `u/clud-bot`.
 
-Registered on Reddit as app **clud-bot** — owner ZachVorhies:
+[![CI](https://github.com/talos-hq/clud-reddit-bot/actions/workflows/ci.yaml/badge.svg)](https://github.com/talos-hq/clud-reddit-bot/actions/workflows/ci.yaml)
+
+Part of the [talos-hq](https://github.com/talos-hq) clud fleet. Registered on
+Reddit as app **clud-bot** — owner ZachVorhies:
 <https://developers.reddit.com/apps/clud-bot>
 
 ## What it does
